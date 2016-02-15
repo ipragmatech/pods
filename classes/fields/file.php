@@ -91,7 +91,7 @@ class PodsField_File extends PodsField {
                     'pods_form_ui_field_file_uploader_options',
                     array(
                         'attachment' => __( 'Attachments (WP Media Library)', 'pods' ),
-                        'plupload' => __( 'Plupload', 'pods' )
+                        'plupload'   => __( 'Plupload', 'pods' )
                     )
                 ),
                 'dependency' => true
@@ -173,7 +173,7 @@ class PodsField_File extends PodsField {
             ),
             self::$type . '_modal_title' => array(
                 'label' => __( 'Modal Title', 'pods' ),
-                'depends-on' => array( self::$type . '_uploader' => 'attachment' ),
+                'depends-on' => array( self::$type . '_uploader' => 'attachments' ),
                 'default' => __( 'Attach a file', 'pods' ),
                 'type' => 'text'
             ),
@@ -282,6 +282,13 @@ class PodsField_File extends PodsField {
         <?php
             return;
         }
+
+        // @todo: Now One Field to Rule Them All
+        $field_type = 'file-upload';
+        pods_view( PODS_DIR . 'ui/fields/file-upload/file-upload.php', compact( array_keys( get_defined_vars() ) ) );
+        return;
+
+        // @todo: we're short-circuiting for prototyping above.  The actions below will need to be woven in
 
         // Use plupload if attachment isn't available
         if ( 'attachment' == pods_var( self::$type . '_uploader', $options ) && ( !is_user_logged_in() || ( !current_user_can( 'upload_files' ) && !current_user_can( 'edit_files' ) ) ) )
