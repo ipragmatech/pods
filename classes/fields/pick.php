@@ -143,8 +143,9 @@ class PodsField_Pick extends PodsField {
                     array(
                         'dropdown' => __( 'Drop Down', 'pods' ),
                         'radio' => __( 'Radio Buttons', 'pods' ),
-                        'autocomplete' => __( 'Autocomplete', 'pods' )
-                    ) + ( ( pods_developer() && 1 == 0 ) ? array( 'flexible' => __( 'Flexible', 'pods' ) ) : array() ) // Disable for now
+                        'autocomplete' => __( 'Autocomplete', 'pods' ),
+	                    'flexible' => __( 'Flexible', 'pods' ),
+                    )
                 ),
                 'dependency' => true
             ),
@@ -159,11 +160,58 @@ class PodsField_Pick extends PodsField {
                     array(
                         'checkbox' => __( 'Checkboxes', 'pods' ),
                         'multiselect' => __( 'Multi Select', 'pods' ),
-                        'autocomplete' => __( 'Autocomplete', 'pods' )
-                    ) + ( ( pods_developer() && 1 == 0 ) ? array( 'flexible' => __( 'Flexible', 'pods' ) ) : array() ) // Disable for now
+                        'autocomplete' => __( 'Autocomplete', 'pods' ),
+	                    'flexible' => __( 'Flexible', 'pods' ),
+                    )
                 ),
                 'dependency' => true
             ),
+            self::$type . '_flexible_add_new' => array(
+                'label' => __( 'Enable Add New', 'pods' ),
+                'help' => __( 'Show an "Add New" button that allows new items to be added directly from the form', 'pods' ),
+                'depends-on' => array(
+	                self::$type . '_format_single' => 'flexible',
+	                self::$type . '_format_multi' => 'flexible'
+                ),
+                'excludes-on' => array(
+                    self::$type . '_object' => array_merge(
+                        array( 'site', 'network' ),
+                        self::simple_objects()
+                    )
+				),
+                'type' => 'boolean',
+                'default' => 1
+            ),
+			self::$type . '_flexible_add_new_text' => array(
+                'label' => __( 'Select from Add New Button Text', 'pods' ),
+                'help' => __( 'This is the text use for the default "Add New" button, if empty, it will default to "Add New"', 'pods' ),
+                'depends-on' => array( self::$type . '_flexible_add_new' => '1' ),
+                'default' => '',
+                'type' => 'text'
+			),
+            self::$type . '_flexible_select' => array(
+                'label' => __( 'Enable Select from Existing', 'pods' ),
+                'help' => __( 'Show a "Select from Existing" button that allows existing items to be selected', 'pods' ),
+                'depends-on' => array(
+	                self::$type . '_format_single' => 'flexible',
+	                self::$type . '_format_multi' => 'flexible'
+                ),
+                'excludes-on' => array(
+                    self::$type . '_object' => array_merge(
+                        array( 'site', 'network' ),
+                        self::simple_objects()
+                    )
+				),
+                'type' => 'boolean',
+                'default' => 1
+            ),
+			self::$type . '_flexible_select_text' => array(
+                'label' => __( 'Select from Existing Button Text', 'pods' ),
+                'help' => __( 'This is the text use for the default "Select from Existing" button, if empty, it will default to "Select from Existing"', 'pods' ),
+                'depends-on' => array( self::$type . '_flexible_select' => '1' ),
+                'default' => '',
+                'type' => 'text'
+			),
             self::$type . '_taggable' => array(
                 'label' => __( 'Taggable', 'pods' ),
                 'help' => __( 'Allow new values to be inserted when using an Autocomplete field', 'pods' ),
