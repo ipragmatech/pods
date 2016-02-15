@@ -180,12 +180,23 @@ class PodsField_Pick extends PodsField {
                     )
 				),
                 'type' => 'boolean',
-                'default' => 1
+                'default' => 1,
+                'dependency' => true
             ),
 			self::$type . '_flexible_add_new_text' => array(
                 'label' => __( 'Select from Add New Button Text', 'pods' ),
                 'help' => __( 'This is the text use for the default "Add New" button, if empty, it will default to "Add New"', 'pods' ),
-                'depends-on' => array( self::$type . '_flexible_add_new' => '1' ),
+                'depends-on' => array(
+	                self::$type . '_flexible_add_new' => '1',
+	                self::$type . '_format_single' => 'flexible',
+	                self::$type . '_format_multi' => 'flexible'
+                ),
+                'excludes-on' => array(
+                    self::$type . '_object' => array_merge(
+                        array( 'site', 'network' ),
+                        self::simple_objects()
+                    )
+				),
                 'default' => '',
                 'type' => 'text'
 			),
@@ -203,12 +214,23 @@ class PodsField_Pick extends PodsField {
                     )
 				),
                 'type' => 'boolean',
-                'default' => 1
+                'default' => 1,
+                'dependency' => true
             ),
 			self::$type . '_flexible_select_text' => array(
                 'label' => __( 'Select from Existing Button Text', 'pods' ),
                 'help' => __( 'This is the text use for the default "Select from Existing" button, if empty, it will default to "Select from Existing"', 'pods' ),
-                'depends-on' => array( self::$type . '_flexible_select' => '1' ),
+                'depends-on' => array(
+	                self::$type . '_flexible_select' => '1',
+	                self::$type . '_format_single' => 'flexible',
+	                self::$type . '_format_multi' => 'flexible'
+                ),
+                'excludes-on' => array(
+                    self::$type . '_object' => array_merge(
+                        array( 'site', 'network' ),
+                        self::simple_objects()
+                    )
+				),
                 'default' => '',
                 'type' => 'text'
 			),
