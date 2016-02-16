@@ -187,7 +187,9 @@ $field_meta = array(
 	'field_options'    => $options
 );
 
-include_once PODS_DIR . 'ui/fields/file-upload/src/templates/file-upload-tpl.php';
+include_once PODS_DIR . 'ui/fields/pick-flexible/src/templates/pick-flexible-tpl.php';
+
+// @todo Update path when it's at /classes/PodsUIFieldData.php
 include_once PODS_DIR . 'ui/fields/file-upload/PodsFieldData.php';
 
 // @todo Need to normalize and finalize.  Is there a potential need for subclasses or does this basically cover it?

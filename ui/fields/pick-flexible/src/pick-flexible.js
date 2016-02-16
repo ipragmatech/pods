@@ -5,18 +5,12 @@ import { PickFlexibleCollection, PickFlexibleModel } from './models/pick-flexibl
 import { PickFlexibleList } from './views/pick-flexible-list';
 import { PickFlexibleForm } from './views/pick-flexible-form';
 
-import { Plupload } from './uploaders/plupload';
-import { MediaModal } from './uploaders/media-modal';
-
-// @todo: last vestiges of knowledge about any specific uploaders?
-const PLUPLOAD_UPLOADER = 'plupload';
-
 export const PickFlexible = Mn.LayoutView.extend( {
 	template: _.template( $( '#pick-flexible-layout-template' ).html() ),
 
 	regions: {
 		list     : '.pods-ui-file-list',
-		ui_region: '.pods-ui-region', // "Utility" container for uploaders to use
+		ui_region: '.pods-ui-region', // "Utility" container for flex input to use
 		form     : '.pods-ui-form'
 	},
 
@@ -41,10 +35,6 @@ export const PickFlexible = Mn.LayoutView.extend( {
 
 		this.showChildView( 'list', listView );
 		this.showChildView( 'form', formView );
-
-		// Setup the uploader and listen for a response event
-		this.uploader = this.createUploader();
-		this.listenTo( this.uploader, 'added:files', this.onAddedFiles );
 	},
 
 	/**
@@ -74,28 +64,6 @@ export const PickFlexible = Mn.LayoutView.extend( {
 	 */
 	onAddedFiles: function ( data ) {
 		this.collection.add( data );
-	},
-
-	createUploader: function () {
-		var options = this.field_meta[ 'field_options' ];
-		var Uploader;
-
-		// Determine which uploader object to use
-		// @todo: last vestiges of knowledge about any specific uploaders?
-		if ( PLUPLOAD_UPLOADER == options[ 'file_uploader' ] ) {
-			Uploader = Plupload;
-		}
-		else {
-			Uploader = MediaModal;
-		}
-
-		this.uploader = new Uploader( {
-			// We provide regular DOM element for the button
-			browse_button: this.getRegion( 'form' ).getEl( '.pods-file-add' ).get(),
-			ui_region    : this.getRegion( 'ui_region' ),
-			field_options: options
-		} );
-		return this.uploader;
 	}
 
 } );
