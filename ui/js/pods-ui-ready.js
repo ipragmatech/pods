@@ -1,6 +1,7 @@
 /*global jQuery, _, Backbone, Mn */
 const $ = jQuery;
 import { FileUpload } from '../fields/file-upload/src/file-upload';
+import { PickFlexible } from '../fields/pick-flexible/src/pick-flexible';
 
 const app = {
 	fields: {}
