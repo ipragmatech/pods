@@ -3,7 +3,7 @@ Contributors: sc0ttkclark, pglewis, Shelob9, jimtrue, jamesgol, clubduece, dan.s
 Donate link: http://podsfoundation.org/donate/
 Tags: pods, custom post types, custom taxonomies, user fields, custom fields, cck, cms, content types, database, framework, drupal, post types, avatars, comment fields, media fields
 Requires at least: 3.8
-Tested up to: 4.4
+Tested up to: 4.5
 Stable tag: 2.7-a-1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -174,7 +174,7 @@ Join us in further translating the Pods interface at: http://wp-translate.org/pr
 * Fixed: Over-escaping strikes again (file upload, restrict file types with more than one mime type) (#3083,#3328) [@pglewis]
 * Fixed: Refresh #3388 with 2.x (#3388,#3389) [@sc0ttkclark]
 * Fixed: Replace usage of get_currentuserinfo with wp_get_current_user (preparation for WP 4.5) (#3399,#3398) [@sc0ttkclark]
-* Fixed: Taxonomy custom meta fields returning false from REST API (#3365,#3369) [@anandamd] 
+* Fixed: Taxonomy custom meta fields returning false from REST API (#3365,#3369) [@anandamd]
 
 = 2.6 - December 9th, 2015 =
 * Added: Support for Term Meta in WP 4.4 - Now create meta-based taxonomies and Pods just magically works! (#3169,#3163) [@sc0ttkclark]
